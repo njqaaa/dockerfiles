@@ -1,4 +1,5 @@
 # ~*~ coding: utf-8 ~*~
+import os
 
 DEBUG = True
 BIND_HOST = '0.0.0.0'
