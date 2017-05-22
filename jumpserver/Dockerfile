@@ -20,7 +20,7 @@ ADD requirements.txt /root/jumpserver/requirements/requirements.txt
 RUN pip3 install --upgrade pip \
   && pip3 install -r /root/jumpserver/requirements/requirements.txt 
 
-RUN ln -s /usr/local/python-3.5/bin/celery /usr/bin/celery 
+RUN ln -s /usr/local/python-3*/bin/celery /usr/bin/celery 
 RUN sed -i 's/python/python3/g' /root/jumpserver/run_server.py
 ADD config.py /root/jumpserver/config.py
 ADD init_db.sh /root/jumpserver/init_db.sh
