@@ -6,15 +6,18 @@ RUN  yum install -y git openssl-devel python-devel gcc gcc-c++ libtool make mysq
   && yum clean all \
   && rm -rf /var/cache/yum/x86_64/7/*
 
-# install python3.5
+ENV PYTHON_TGZ_VERSION 3.6.1
+ENV PYTHON_VERSION 3.6
+
+# install python ${PYTHON_VERSION}
 RUN cd /usr/local/src \
-  && wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz \
-  && tar -xvf Python-3.5.1.tgz \
-  && cd Python-3.5.1 \
-  && ./configure --prefix=/usr/local/python-3.5 --enable-shared \
+  && wget https://www.python.org/ftp/python/${PYTHON_TGZ_VERSION}/Python-${PYTHON_TGZ_VERSION}.tgz \
+  && tar -xvf Python-${PYTHON_TGZ_VERSION}.tgz \
+  && cd Python-${PYTHON_TGZ_VERSION} \
+  && ./configure --prefix=/usr/local/python-${PYTHON_VERSION} --enable-shared \
   && make && make install \
-  && rm -rf /usr/local/src/Python-3.5* \
-  && ln -s /usr/local/python-3.5/lib/libpython3.5m.so.1.0 /usr/lib64/ \
-  && ln -s /usr/local/python-3.5/lib/python3.5/configparser.py /usr/local/python-3.5/lib/python3.5/ConfigParser.py \
-  && ln -s /usr/local/python-3.5/bin/pip3 /usr/bin/pip3 \
-  && ln -s /usr/local/python-3.5/bin/python3 /usr/bin/ 
+  && rm -rf /usr/local/src/Python-${PYTHON_VERSION}* \
+  && ln -s /usr/local/python-${PYTHON_VERSION}/lib/libpython${PYTHON_VERSION}m.so.1.0 /usr/lib64/ \
+  && ln -s /usr/local/python-${PYTHON_VERSION}/lib/python${PYTHON_VERSION}/configparser.py /usr/local/python-${PYTHON_VERSION}/lib/python${PYTHON_VERSION}/ConfigParser.py \
+  && ln -s /usr/local/python-${PYTHON_VERSION}/bin/pip3 /usr/bin/pip3 \
+  && ln -s /usr/local/python-${PYTHON_VERSION}/bin/python3 /usr/bin/
