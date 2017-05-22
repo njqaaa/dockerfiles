@@ -9,9 +9,6 @@ NAME = 'coco'
 # Jumpserver项目的url, api请求注册会使用
 JUMPSERVER_ENDPOINT = os.environ.get("JUMPSERVER_ENDPOINT") or 'http://jumpserver'
 
-# 启动时绑定的ip, 默认 0.0.0.0
-# BIND_HOST = '0.0.0.0'
-
 # 监听的端口号, 默认2222
 LISTEN_PORT = int(os.environ.get("LISTEN_PORT", 2222))
 
