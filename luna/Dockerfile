@@ -14,6 +14,8 @@ RUN pip3 install --upgrade pip \
 RUN sed -i 's/python/python3/g' /root/luna/run_server.py
 ADD config.py /root/luna/config.py
 
+WORKDIR /root/luna
+
 EXPOSE 5000
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/usr/bin/supervisord"]

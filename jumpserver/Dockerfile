@@ -25,6 +25,8 @@ RUN sed -i 's/python/python3/g' /root/jumpserver/run_server.py
 ADD config.py /root/jumpserver/config.py
 ADD init_db.sh /root/jumpserver/init_db.sh
 
+WORKDIR /root/jumpserver
+
 EXPOSE 80
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/usr/bin/supervisord"]

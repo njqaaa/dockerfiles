@@ -32,5 +32,7 @@ ENV JAVA_HOME /usr/local/java/jdk1.8.0
 ENV CATALINA_HOME /data/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
+WORKDIR /data/tomcat
+
 CMD ["/data/tomcat/bin/catalina.sh", "run"]
 

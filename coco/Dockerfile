@@ -16,7 +16,8 @@ RUN pip3 install --upgrade pip \
 RUN ln -s /usr/local/python-3.5/bin/celery /usr/bin/celery 
 RUN sed -i 's/python/python3/g' /root/coco/run_server.py
 ADD config.py /root/coco/config.py
-#ADD init_db.sh /root/coco/init_db.sh
+
+WORKDIR /root/coco
 
 EXPOSE 2222
 ADD supervisord.conf /etc/supervisord.conf
