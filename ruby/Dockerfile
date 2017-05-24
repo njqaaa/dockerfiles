@@ -6,8 +6,8 @@ RUN  yum install -y git openssl-devel gcc gcc-c++ make \
   && yum clean all \
   && rm -rf /var/cache/yum/x86_64/7/*
 
-ENV RUBY_TARGZ_VERSION 2.1.8
-ENV RUBY_VERSION 2.1
+ENV RUBY_TARGZ_VERSION 2.3.1
+ENV RUBY_VERSION 2.3
 
 # install ruby ${RUBY_VERSION}
 RUN cd /usr/local/src \
