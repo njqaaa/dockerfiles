@@ -3,7 +3,7 @@ FROM centos:7
 MAINTAINER hy2900822@126.com
 
 #yum install
-RUN yum install -y net-tools wget openssh-server rsync kde-l10n-Chinese \
+RUN yum install -y vim net-tools wget openssh-server rsync kde-l10n-Chinese \
   && yum -y reinstall glibc-common \
   && yum clean all \
   && rm -rf /var/cache/yum/x86_64/7/*

@@ -16,11 +16,12 @@ RUN cd /usr/local/src/ \
   && rm -rf jdk-${JDK_DOWNLOAD_NAME}-linux-x64.tar.gz
 
 # Get Tomcat
-RUN  wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /usr/local/src/tomcat.tar.gz \
+RUN cd /usr/local/src \
+  &&  wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O tomcat.tar.gz \
   && mkdir /data/ \
-  && tar -xzvf /tmp/tomcat.tar.gz -C /data/ \
+  && tar -xzvf tomcat.tar.gz -C /data/ \
   && mv /data/apache-tomcat-${TOMCAT_VERSION} /data/tomcat \
-  && rm /tmp/tomcat.tar.gz \
+  && rm tomcat.tar.gz \
   && rm -rf /data/tomcat/webapps/* \
   && mkdir /data/tomcat/webapps/ROOT \
   && find /data/tomcat/bin -name \*.bat|xargs rm \
