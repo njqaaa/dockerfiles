@@ -9,5 +9,7 @@ RUN cd /root \
 WORKDIR /root/blog
 EXPOSE 80
 
+ADD update_domain.sh /root/blog/update_domain.sh
+
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/usr/bin/supervisord"]
