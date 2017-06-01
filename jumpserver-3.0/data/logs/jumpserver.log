@@ -1,1 +1,7 @@
 
+2017-06-01 17:09:58,490 - views.py - DEBUG - 删除用户 nijq 
+2017-06-01 17:09:58,503 - user_api.py - DEBUG - rm -f /root/jumpserver/keys/user/nijq_*.pem
+2017-06-01 17:10:22,424 - user_api.py - DEBUG - 生成ssh key， 并设置authorized_keys
+2017-06-01 17:15:07,270 - views.py - DEBUG - 删除用户 nijq 
+2017-06-01 17:15:07,281 - user_api.py - DEBUG - rm -f /root/jumpserver/keys/user/nijq_*.pem
+2017-06-01 17:15:26,753 - user_api.py - DEBUG - 生成ssh key， 并设置authorized_keys
