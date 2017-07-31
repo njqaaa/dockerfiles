@@ -6,6 +6,8 @@ ENV GLIBC_VERSION=2.25-r0 \
     LANG=C.UTF-8
 
 RUN set -ex  \
+  && apk add --no-cache tzdata \
+  && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
   && apk upgrade --update  \
   && apk add --update libstdc++ curl ca-certificates bash  \
   && for pkg in glibc-${GLIBC_VERSION} glibc-bin-${GLIBC_VERSION} glibc-i18n-${GLIBC_VERSION}; do curl -sSL https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/${pkg}.apk -o /tmp/${pkg}.apk; done  \
