@@ -3,7 +3,7 @@ FROM alpine:3.6
 MAINTAINER hy2900822@126.com
 
 ## 下载k8s集群所需的包
-ENV K8S_VERSION=v1.7.10 \
+ENV K8S_VERSION=v1.8.3 \
      ETCD_VERSION=v3.2.10 \
      FLANNEL_VERSION=v0.9.1
 
