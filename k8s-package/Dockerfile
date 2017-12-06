@@ -40,6 +40,6 @@ RUN mkdir cni \
   && tar -zxvf cni-plugins-amd64-${CNI_PLUGINS_VERSION}.tgz -C cni \
   && rm cni-plugins-amd64-${CNI_PLUGINS_VERSION}*
 
-RUN curl https://github.com/projectcalico/calicoctl/releases/download/${CALICOCTL_VERSION}/calicoctl -sSL  -o cni/calicoctl
-RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico -sSL  -o cni/calico
-RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico-ipam -sSL  -o cni/calico-ipam
+RUN curl https://github.com/projectcalico/calicoctl/releases/download/${CALICOCTL_VERSION}/calicoctl -sSL -o cni/calicoctl
+RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico -sSL -o cni/calico
+RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico-ipam -sSL -o cni/calico-ipam
