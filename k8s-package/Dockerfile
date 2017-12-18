@@ -19,6 +19,10 @@ RUN mkdir k8s_bin \
   && tar -xzvf kubernetes-server-linux-amd64.tar.gz \
   && mv kubernetes/server/bin/kubectl k8s_bin/ \
   && mv kubernetes/server/bin/kubelet k8s_bin/ \
+  && mv kubernetes/server/bin/kube-apiserver k8s_bin/ \
+  && mv kubernetes/server/bin/kube-controller-manager k8s_bin/ \
+  && mv kubernetes/server/bin/kube-scheduler k8s_bin/ \
+  && mv kubernetes/server/bin/kube-proxy k8s_bin/ \
   && rm -rf kubernetes*
 
 # download etcd
