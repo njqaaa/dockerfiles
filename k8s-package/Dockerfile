@@ -40,7 +40,7 @@ RUN curl -sSL https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -o cfssl/cfssljso
 RUN curl -sSL https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -o cfssl/cfssl-certinfo
 
 # download helm
-RUN mkdir heml
+RUN mkdir heml \
   && curl -sSL https://storage.googleapis.com/kubernetes-helm/helm-${HEML_VERSION}-linux-amd64.tar.gz -o helm-linux-amd64.tar.gz \
   && tar -zxvf helm-linux-amd64.tar.gz -C heml \
   && rm helm-linux-amd64.tar.gz
