@@ -3,10 +3,11 @@ FROM alpine:3.6
 MAINTAINER hy2900822@126.com
 
 ## 下载k8s集群所需的包
-ENV K8S_VERSION=v1.8.5 \
-     ETCD_VERSION=v3.2.10 \
-     CALICO_VERSION=v1.11.0 \
-     CALICOCTL_VERSION=v1.6.1 \
+ENV K8S_VERSION=v1.8.6 \
+     ETCD_VERSION=v3.2.13 \
+     HEML_VERSION=v2.7.2 \
+     CALICO_VERSION=v2.0.0 \
+     CALICOCTL_VERSION=v2.0.0 \
      CNI_PLUGINS_VERSION=v0.6.0
 
 RUN apk add --update curl
@@ -38,11 +39,19 @@ RUN curl -sSL https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -o cfssl/cfssl
 RUN curl -sSL https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -o cfssl/cfssljson
 RUN curl -sSL https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -o cfssl/cfssl-certinfo
 
+# download helm
+RUN mkdir heml
+  && curl -sSL https://storage.googleapis.com/kubernetes-helm/helm-${HEML_VERSION}-linux-amd64.tar.gz -o helm-linux-amd64.tar.gz \
+  && tar -zxvf helm-linux-amd64.tar.gz -C heml \
+  && rm helm-linux-amd64.tar.gz
+
 # download cni-plugin
 RUN mkdir cni \
   && curl -sSL https://github.com/containernetworking/plugins/releases/download/${CNI_PLUGINS_VERSION}/cni-plugins-amd64-${CNI_PLUGINS_VERSION}.tgz -o cni-plugins-amd64-${CNI_PLUGINS_VERSION}.tgz \
   && tar -zxvf cni-plugins-amd64-${CNI_PLUGINS_VERSION}.tgz -C cni \
-  && rm cni-plugins-amd64-${CNI_PLUGINS_VERSION}*
+  && rm cni-plugins-amd64-${CNI_PLUGINS_VERSION}* \
+  && cd cni \
+  && ls | grep -v 'calico\|loopback' | xargs rm
 
 RUN curl https://github.com/projectcalico/calicoctl/releases/download/${CALICOCTL_VERSION}/calicoctl -sSL -o cni/calicoctl
 RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico -sSL -o cni/calico
