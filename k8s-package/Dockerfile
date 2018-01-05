@@ -6,8 +6,8 @@ MAINTAINER hy2900822@126.com
 ENV K8S_VERSION=v1.8.6 \
      ETCD_VERSION=v3.2.13 \
      HELM_VERSION=v2.7.2 \
-     CALICO_VERSION=v2.0.0 \
-     CALICOCTL_VERSION=v2.0.0 \
+     CALICO_VERSION=v1.11.2 \
+     CALICOCTL_VERSION=v1.6.3 \
      CNI_PLUGINS_VERSION=v0.6.0
 
 RUN apk add --update curl
@@ -55,6 +55,6 @@ RUN mkdir cni \
   && cd cni \
   && ls | grep -v 'calico\|loopback' | xargs rm
 
-RUN curl https://github.com/projectcalico/calicoctl/releases/download/${CALICOCTL_VERSION}/calicoctl -sSL -o cni/calicoctl
 RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico -sSL -o cni/calico
 RUN curl https://github.com/projectcalico/cni-plugin/releases/download/${CALICO_VERSION}/calico-ipam -sSL -o cni/calico-ipam
+RUN curl https://github.com/projectcalico/calicoctl/releases/download/${CALICOCTL_VERSION}/calicoctl -sSL -o cni/calicoctl
