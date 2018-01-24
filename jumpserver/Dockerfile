@@ -1,32 +1,33 @@
-FROM njqaaa/python3
+FROM njqaaa/base
 
 MAINTAINER hy2900822@126.com
 
-# clone code
+RUN yum install -y epel-release \
+  && yum install -y git python-pip mysql-devel rpm-build gcc automake autoconf python-devel vim sshpass lrzsz readline-devel cronie \
+  && yum clean all \
+  && rm -rf /var/cache/yum/x86_64/7/*
+
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 RUN cd /root \
-  && git clone https://github.com/jumpserver/jumpserver.git \
+  && git clone https://github.com/njqaaa/jumpserver.git --depth 1 \
   && cd /root/jumpserver \
-  && rm -rf .git
+  && rm -rf .git \
+  && chmod -R 777 /root
 
-RUN cd /usr/local/src/ \
-  && curl -O -L http://downloads.sourceforge.net/project/sshpass/sshpass/1.06/sshpass-1.06.tar.gz \
-  && tar -xzvf sshpass-1.06.tar.gz \
-  && cd sshpass-1.06 \
-  && ./configure \
-  && make && make install \
-  && rm -rf /usr/loca/src/sshpass-1.06*
+RUN pip install -r /root/jumpserver/requirements.txt
 
-ADD requirements.txt /root/jumpserver/requirements/requirements.txt
-RUN pip3 install --upgrade pip \
-  && pip3 install -r /root/jumpserver/requirements/requirements.txt 
-
-RUN ln -s /usr/local/python-3*/bin/celery /usr/bin/celery 
-RUN sed -i 's/python/python3/g' /root/jumpserver/run_server.py
-ADD config.py /root/jumpserver/config.py
-ADD init_db.sh /root/jumpserver/init_db.sh
+# 挂载需要
+RUN mkdir -p /data/logs \
+  && mkdir -p /data/keys \
+  && ln -s /data/logs /root/jumpserver/logs \
+  && ln -s /data/keys /root/jumpserver/keys \
+  && ln -s /data/envinfo.sh /etc/profile.d/envinfo.sh 
 
 WORKDIR /root/jumpserver
 
+VOLUME /data
+
 EXPOSE 80
+
 ADD supervisord.conf /etc/supervisord.conf
 CMD ["/usr/bin/supervisord"]
