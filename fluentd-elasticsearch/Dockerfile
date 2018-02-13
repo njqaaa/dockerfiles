@@ -31,8 +31,12 @@ COPY Gemfile /Gemfile
 # 2. Install fluentd via ruby.
 # 3. Remove build dependencies.
 # 4. Cleanup leftover caches & files.
-RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev autoconf automake libtool libltdl-dev ca-certificates libjemalloc1 ruby" \
+#
+RUN BUILD_DEPS="make gcc g++ libc6-dev ruby-dev autoconf automake libtool libltdl-dev" \
     && clean-install $BUILD_DEPS \
+                     ca-certificates \
+                     libjemalloc1 \
+                     ruby \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem install --file Gemfile \
     && apt-get purge -y --auto-remove \
