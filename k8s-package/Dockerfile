@@ -1,14 +1,14 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 MAINTAINER hy2900822@126.com
 
 ## 下载k8s集群所需的包
-ENV K8S_VERSION=v1.8.6 \
-     ETCD_VERSION=v3.2.13 \
-     HELM_VERSION=v2.7.2 \
-     CALICO_VERSION=v1.11.2 \
+ENV K8S_VERSION=v1.8.8 \
+     ETCD_VERSION=v3.3.1 \
+     HELM_VERSION=v2.8.1 \
+     CALICO_VERSION=v1.11.4 \
      CALICOCTL_VERSION=v1.6.3 \
-     CNI_PLUGINS_VERSION=v0.6.0
+     CNI_PLUGINS_VERSION=v0.7.0
 
 RUN apk add --update curl
 
