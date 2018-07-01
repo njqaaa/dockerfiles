@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-MAINTAINER nijq@fruitday.com
+MAINTAINER hy2900822@126.com
 
 ENV GLIBC_VERSION=2.26-r0 \
     LANG=C.UTF-8 \
