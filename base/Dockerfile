@@ -36,6 +36,7 @@ RUN set -ex \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf \
     && find /usr/share/zoneinfo/ -type d -name Asia | xargs rm -rf \
     && find /usr/share/zoneinfo/ -type f ! -name Shanghai | xargs rm \
+    && find /usr/glibc-compat/share/i18n -type f  ! -name UTF-8.gz ! -name GB2312.gz ! -name en_US | xargs rm \
     && cat /dev/null > /lib/apk/db/installed \
     && rm -rf /usr/share/terminfo \
     && mkdir /opt \
